@@ -38,6 +38,18 @@ your own; these values belong to nobody):
 gh search issues --label "good first issue" --language python --state open --limit 100 --json title,repository,labels,assignees,commentsCount,updatedAt,url
 -->
 
+gh search issues --label "good first issue" --language python --state open --no-assignee --updated ">2026-09-09" --limit 100 --json title,repository,labels,assignees,commentsCount,updatedAt,url
+
+gh search issues --label "good first issue" --language javascript --state open --no-assignee --updated ">2026-09-09" --limit 100 --json title,repository,labels,assignees,commentsCount,updatedAt,url
+
+gh search issues --label "good first issue" --language java --state open --no-assignee --updated ">2026-09-09" --limit 100 --json title,repository,labels,assignees,commentsCount,updatedAt,url
+
+gh search issues --label "good first issue" --language typescript --state open --no-assignee --updated ">2026-09-09" --limit 100 --json title,repository,labels,assignees,commentsCount,updatedAt,url
+
+gh search issues --label "help wanted" --label "bug" --language python --state open --no-assignee --updated ">2026-09-09" --limit 100 --json title,repository,labels,assignees,commentsCount,updatedAt,url
+
+gh search issues --label "good first issue" --label "documentation" --state open --no-assignee --updated ">2026-09-09" --limit 100 --json title,repository,labels,assignees,commentsCount,updatedAt,url
+
 ## Ranking filters
 
 <!-- Conditions and orderings over the free result fields, applied in
@@ -48,6 +60,15 @@ your ordering. Example SHAPES (write your own):
 - drop any result not updated in the last 60 days
 - prefer fewer comments over more
 -->
+
+- drop any result with a non-empty assignees.
+- drop any result whose updatedAt is more than 60 days before today (before 2026-09-09).
+- drop any result whose labels include wontfix, duplicate, question, or needs-discussion. These usually mean the issue isn't ready to work on.
+- drop any result whose repository name or labels point to C# or Ruby on Rails (for example, csharp, dotnet, rails, ruby). This is a best-effort check, since repo language isn't a result field.
+- drop any result with commentsCount above 10. A long thread usually means the scope is disputed or someone is already working on it.
+- order by commentsCount, fewest first. Fewer comments usually means less competition and a clearer scope.
+- tie-break by updatedAt, most recent first. Then, if still tied, put results whose labels include bug or documentation ahead of the rest. That matches your preference for small fixes.
+
 
 ## How many to grade
 
