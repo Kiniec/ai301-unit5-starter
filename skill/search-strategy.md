@@ -64,7 +64,7 @@ your ordering. Example SHAPES (write your own):
 - drop any result with a non-empty assignees.
 - drop any result whose updatedAt is more than 60 days before today (before 2026-09-09).
 - drop any result whose labels include wontfix, duplicate, question, or needs-discussion. These usually mean the issue isn't ready to work on.
-- drop any result whose repository name or labels point to C# or Ruby on Rails (for example, csharp, dotnet, rails, ruby). This is a best-effort check, since repo language isn't a result field.
+<!-- - drop any result whose repository name or labels point to C# or Ruby on Rails (for example, csharp, dotnet, rails, ruby). This is a best-effort check, since repo language isn't a result field. -->
 - drop any result with commentsCount above 10. A long thread usually means the scope is disputed or someone is already working on it.
 - order by commentsCount, fewest first. Fewer comments usually means less competition and a clearer scope.
 - tie-break by updatedAt, most recent first. Then, if still tied, put results whose labels include bug or documentation ahead of the rest. That matches your preference for small fixes.
